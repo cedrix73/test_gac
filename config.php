@@ -3,12 +3,14 @@
 
 $host = $_SERVER['SERVER_ADDR']=='::1' ?  '127.0.0.1' : $_SERVER['SERVER_ADDR'];
 define('GAC_DATABASE_SERVER', $host);
+
+// Change ME !
 define('GAC_DATABASE_USER' , 'root');
 define('GAC_DATABASE_PASSWORD', 'cedrix');
+
 define('GAC_DATABASE_NAME', 'gac_tickets');
 $bdObj = null;
 $usedDb = 'mysql';
-
 
 
 

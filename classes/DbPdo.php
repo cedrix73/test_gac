@@ -25,11 +25,17 @@ class DbPdo implements DbInterface
 	
 	
     /**
-     * Etablit une connexion à un serveur de base de données et retourne un identifiant de connexion
-     * L'identifiant est positif en cas de succès, FALSE sinon.
-     * On pourrait se connecter avec un utilisateur lambda
+     * @name:           connect
+	 * @description     Etablit une connexion à un serveur de base de données et retourne un
+     *  			    identifiant de connexion $dbh. L'identifiant est positif en cas de succès, 
+	 *  			    FALSE sinon.
+     * 
+	 * @param  array    $conInfos Contient les identifiants de connexion
+	 * @param  bool     $no_msg  true: active les messages pour le debuggage (en cours)
+	 * 
+	 * @return boolean  $dbh  Pointeur de la base de données 
      */
-	public function connect($conInfos, $no_msg = 0)
+	public function connect($conInfos, $no_msg = false)
 	{
 		$host = $conInfos['host'];
 		$dbname = $conInfos['dbase'];
@@ -41,8 +47,11 @@ class DbPdo implements DbInterface
 			$dbh = new PDO($dsn, $conInfos['username'], $conInfos['password']);
 			$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
 			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			if($dbh===false) {
+				throw new PDOException("La connexion à la base de données mySql a échoué");
+			}
 		} catch (PDOException $e) {
-			echo 'Failed: ' . $e->getMessage();
+			echo 'Erreur de la base de données: ' . $e->getMessage();
 		}
 		return $dbh;
 	}
@@ -56,8 +65,10 @@ class DbPdo implements DbInterface
 	 * pour être interprétée ultérieurement par fetchRow ou fetchArray.
 	 * 
 	 * @param ressource $link: instance renvoiée lors de la connexion PDO.
-	 * @param string $query: chaine SQL
+	 * @param String $query : Chaîne de la requête SQL
+	 * 
 	 * @return array $resultSet : resultat de l'execution
+	 * @return boolean $resultSet : si erreur
 	 */
 	public function execQuery($link, $query) {
 		$resultSet = false;

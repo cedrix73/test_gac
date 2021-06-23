@@ -42,6 +42,11 @@ class DbAccess
     /**
      * @name connect
      * @description  Procède à la connexion et crée le pointeur $_link
+     * Les exceptions sont renvoyées par les classes spécialistes.
+     * @param  bool  $no_msg  true: active les messages pour le debuggage (en cours) 
+     * 
+     * @return boolean $retour  Pointeur de la base de données si OK
+     * @return string $retour:  si KO
      */
     public function connect($no_msg = false)
 	{
@@ -107,9 +112,13 @@ class DbAccess
     /**
      * @name execQuery
      * @description Envoie la requête SQL $req pour son execution et 
-     * retourne un resultSet 
+     * retourne un resultSet par les classes spécialistes.
+     * 
      * @param String $query : Chaîne de la requête SQL
-     */
+     * 
+	 * @return array $resultSet : resultat de l'execution
+	 * @return boolean $resultSet : si erreur
+	 */
        public function execQuery($query) 
        {
            return $this->_dbInterface->execQuery($this->_link, $query);

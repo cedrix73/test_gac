@@ -22,10 +22,17 @@ class DbMySqli implements DbInterface {
         return $this->_noMsg;
     }
 
-	/* Etablit une connexion à un serveur de base de données et retourne un identifiant de connexion
-	   L'identifiant est positif en cas de succès, FALSE sinon.
-	   On pourrait se connecter avec un utilisateur lambda
-	   */
+	/**
+     * @name: connect
+	 * @description Etablit une connexion à un serveur de base de données et retourne un
+     *  			identifiant de connexion $dbh. L'identifiant est positif en cas de succès, 
+	 *  			FALSE sinon.
+     * 
+	 * @param  array    $conInfos Contient les identifiants de connexion
+	 * @param  boolean  $dbh  Pointeur de la base de données 
+	 * 
+	 * @return boolean  $dbh  Pointeur de la base de données 
+     */
 	public function connect($conInfos, $no_msg = 0)
 	{
         $this->_noMsg = $no_msg;
@@ -38,7 +45,7 @@ class DbMySqli implements DbInterface {
 		{
             if ($no_msg == false){
                 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-                $link = "Erreur de connexion N° ". mysqli_connect_errno();
+                $link = "Erreur de connexion mySqli N° ". mysqli_connect_errno();
             }
             $this->close($dbh);
 		} else {
@@ -72,7 +79,8 @@ class DbMySqli implements DbInterface {
 	 * 
 	 * @param ressource $link: instance renvoiée lors de la connexion PDO.
 	 * @param string $query: chaine SQL
-	 * @return array $resultSet : resultat de l'execution
+	 * @return array $resultSet : resultat de l'execution 
+	 * @return boolean $resultSet : si erreur
 	 */
 	public function execQuery($link, $query) {
         $resultSet = $link->real_query($query);
