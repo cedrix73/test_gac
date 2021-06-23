@@ -69,9 +69,7 @@ class TicketRepository {
         $reponse = $this->dbaccess->execPreparedQuery($this->_sql);
         return $reponse;
     }
-    
 
- 
-    
+
     
 }

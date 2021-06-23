@@ -30,8 +30,9 @@ function checkcheck($post_group, $val_element, $type = 'checkbox'){
 function rightEncode($string) {
     mb_detect_encoding($string) != 'UTF-8' ?: $string = utf8_encode($string);
     return $string;
-
 }
+
+
 
 
 
@@ -150,6 +151,23 @@ function listeLoad($nomChampSql, $nomTable, $db, $filtre = null){
     }
     
     return $liste;
+}
+
+
+/**
+ * @name        afficherErreur
+ * @description affiche un message d'erreur dans un template Bulma
+ * @param  String $titre           Titre de l'entête
+ * @param  String $message         Message d'erreur 
+ * @return String $templateString  template renvoyé avec titre et message d'erreur 
+ */
+function afficherErreur($titre, $message) {
+    $templateString =   "<article class='panel is-danger'>" .
+                        "   <p class='panel-heading'>" . $titre . "</p>" .
+                        "   <div class='panel-block'>" . $message . "</div>" . 
+                        "</article>";
+
+    return $templateString;
 }
 
 

@@ -38,7 +38,7 @@ class DbMySqli implements DbInterface {
 		{
             if ($no_msg == false){
                 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-                echo "Erreur de connexion N° ". mysqli_connect_errno();
+                $link = "Erreur de connexion N° ". mysqli_connect_errno();
             }
             $this->close($dbh);
 		} else {

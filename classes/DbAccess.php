@@ -47,10 +47,11 @@ class DbAccess
 	{
         try {
             $this->_link = $this->_dbInterface->connect($this->_conInfos, $no_msg);
+            $retour = $this->_link;
         } catch (Exception $e) {
-            echo 'Erreur: ' . $e->getMessage();
+            $retour =  $e->getMessage();
         }
-        return $this->_link;
+        return $retour;
     }
     
 

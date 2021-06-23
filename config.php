@@ -37,18 +37,21 @@ define('M_FIREPHP',false);
 
 define('ABS_ROOT_PATH', realpath(dirname(__FILE__)));
 define('ABS_CLASSES_PATH', ABS_ROOT_PATH . '/classes/');
+define('ABS_CONTROLLERS_PATH', ABS_ROOT_PATH . '/controllers/');
 define('ABS_SCRIPTS_PATH', ABS_ROOT_PATH . '/js/');
 define('ABS_GENERAL_PATH', ABS_ROOT_PATH . '/general/');
-define('ABS_DATA_PATH', ABS_ROOT_PATH . '/data/');
+define('ABS_DATA_PATH', ABS_ROOT_PATH . '/sql/');
+define('ABS_DUMP_PATH', ABS_ROOT_PATH . '/sql/dump/');
 define('ABS_STYLES_PATH', ABS_ROOT_PATH . '/styles/');
 define('ABS_IMAGES_PATH', ABS_ROOT_PATH . '/styles/img/');
 
 define('APPLI_PATH', '/planning/');
 define('ROOT_PATH', $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT']. APPLI_PATH);
 define('CLASSES_PATH',  'classes/');
+define('CONTROLLERS_PATH',  'controllers/');
 define('SCRIPTS_PATH',  'js/');
 define('GENERAL_PATH',  'general/');
-define('DATA_PATH',  'data/');
+define('DATA_PATH',  'sql/');
 define('STYLES_PATH',  'styles/');
 define('IMAGES_PATH',  'styles/img/');
 define('MAIN_IMAGES_PATH',  '../../styles/img/');
